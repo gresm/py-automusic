@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from pydub import AudioSegment, generators
+from pydub import AudioSegment
 
 from .configs import Configs
 
@@ -24,12 +24,6 @@ class AbstractInstrument(ABC):
         return sound * int(missing * sound_length)
 
 
-class SinInstrument(AbstractInstrument):
-    def _get_base_sound(self) -> AudioSegment:
-        return generators.Sine(self.configs.starting_pitch).to_audio_segment(self.configs.note_speed)
-
-
 __all__ = [
-    "AbstractInstrument",
-    "SinInstrument"
+    "AbstractInstrument"
 ]
