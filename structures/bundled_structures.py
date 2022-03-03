@@ -13,7 +13,7 @@ class PauseNote(AbstractNote):
     time: int
 
     def __init__(self, instrument: AbstractInstrument, time: int):
-        super(PauseNote, self).__init__(instrument)
+        super(PauseNote, self).__init__(instrument, time)
         self.time = time
 
     def get_sound(self) -> AudioSegment:
@@ -27,8 +27,7 @@ class MultiNote(AbstractNote):
     time: int
 
     def __init__(self, instrument: AbstractInstrument, time: int, note: Note, notes: list[Note]):
-        super(MultiNote, self).__init__(instrument)
-        self.time = time
+        super(MultiNote, self).__init__(instrument, time)
         self.note = note
         self.notes = notes
 
