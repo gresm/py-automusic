@@ -26,3 +26,8 @@ class MusicBar(AbstractBar):
 
         self.notes.append(note)
         return True
+
+
+__all__ = [
+    "MusicBar"
+]
