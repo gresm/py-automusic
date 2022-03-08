@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from pydub import AudioSegment
+
 from . import Configs, AbstractInstrument
 
 
@@ -17,6 +19,10 @@ class AbstractBar(ABC):
 
     @abstractmethod
     def add_note(self, note) -> bool:
+        pass
+
+    @abstractmethod
+    def generate(self) -> AudioSegment:
         pass
 
 
