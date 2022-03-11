@@ -15,10 +15,10 @@ class SimpleRandomGenerator(AbstractGenerator):
     def _beep_generate(self, value: float):
         if value <= self.max_detail:
             return value
-        option = rd.randint(0, 3)
-        if option == 0:
+        option = rd.randint(0, 10)
+        if option < 2:
             return value
-        elif option == 2:
+        elif 2 <= option < 7:
             if value / 2 < self.max_detail:
                 return value
             v1 = self._beep_generate(value / 2)
@@ -53,7 +53,7 @@ class SimpleRandomGenerator(AbstractGenerator):
         return ret
 
     def _generate_pitch(self):
-        return rd.randint(0, self.pitch_range[1]) + self.pitch_range[0]
+        return rd.randint(0, self.pitch_range[1]) * self.configs.pitch_detail + self.pitch_range[0]
 
     def generate_chunk(self) -> MusicBar:
         bar = MusicBar(self.configs, self.instrument)
