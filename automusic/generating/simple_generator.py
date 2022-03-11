@@ -19,7 +19,7 @@ class SimpleRandomGenerator(AbstractGenerator):
         if option == 0:
             return value
         elif option == 2:
-            if value / 2 <= self.max_detail:
+            if value / 2 < self.max_detail:
                 return value
             v1 = self._beep_generate(value / 2)
             v2 = self._beep_generate(value / 2)
@@ -32,7 +32,7 @@ class SimpleRandomGenerator(AbstractGenerator):
 
             return v1 + v2
         else:
-            if value / 2 <= self.max_detail:
+            if value / 2 < self.max_detail:
                 return value
             v1 = self._beep_generate(value / 2)
             v2 = self._beep_generate(value / 2)
