@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from . import AbstractGenerator, AbstractInstrument, MusicBar, NotePromise, Note
+from . import AbstractGenerator
+from ..structures import AbstractInstrument, MusicBar, NotePromise, Note
 
 import random as rd
 
@@ -16,7 +17,7 @@ class SimpleRandomGenerator(AbstractGenerator):
         if value <= self.max_detail:
             return value
         option = rd.randint(0, 10)
-        if option < 2:
+        if option == 0:
             return value
         elif 2 <= option < 7:
             if value / 2 < self.max_detail:
@@ -59,6 +60,8 @@ class SimpleRandomGenerator(AbstractGenerator):
         bar = MusicBar(self.configs, self.instrument)
         for beep in self._generate_beeps():
             bar.add_note(NotePromise(Note, beep, octave=self._generate_pitch()))
+        if not bar.is_full():
+            bar.add_note(NotePromise(Note, bar.get_free_time(), octave=self._generate_pitch()))
         return bar
 
 
